@@ -1,0 +1,35 @@
+<% include ../partials/header %>
+<nav class="navbar navbar-default">
+        <div class="container-fluid">
+                    <div class="navbar-header">
+    <p>ABOUT ME</p>
+    <p>My name is <strong>AREMU LUCKY BABA</strong> i have <strong>HND</strong> upper credit in <strong>Chemistry/Biochemistry</strong> from the department of Science Laboratory Technology <strong>Auchi Polytechnic Auchi,Edo State in 2015.</strong> During my Nysc i used my spare time to learn how to repair computers, then after Nysc i worked as a customer representative at PacyBB cosmetics. Early this 2018 i focused on website development watching videos from YouTube,Udemy etc, i successfully built my first Demo website called <strong>AremuCamp</strong>. It took me almost 4 months to study and build this website. <strong>I will really appreciate a job, referal or recommendation from anybody to get a new Job. Thank You </strong><a href="/about">For More Information</a> </p>
+</div>
+</div>
+</nav>
+<div class="container">
+    <header class="jumborton">
+        <div class="container">
+                <h1>AremuCAMP</h1>
+                <h3><p>Great to have you here!! Add your status below</p></h3>
+                <p><a class="btn btn-primary btn-large" href="/campground/new">Add Status</a></p>
+        </div>
+    </header>
+             <div class="row text-center" style="display:flex;flex-wrap: wrap;">
+               <% campground.forEach(function(campground){ %>
+                    <div class="col-md-3 col-sm-6">
+                      <div class="thumbnail">
+                         <image class="img-responsive" src="<%= campground.image %>">
+                        <div class="caption">
+                    <h4> <%= campground.name %> </h4>
+                </div>
+                <p>
+                    <a href="/campground/<%= campground._id %>"class="btn btn primary">More info</a>
+                </p>
+            </div>
+        </div>
+    <% }); %>
+</div>
+</div>
+
+<% include ../partials/footer %>

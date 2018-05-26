@@ -1,0 +1,23 @@
+.thumbnail img {
+    width: 100%;
+    height: 60%;
+}
+
+.thumbnail {
+    height: 95%;
+    width: 100%;
+}
+
+.thumbnail.camption-full {
+    padding: 9px;
+}
+
+#delete-form {
+    display: inline;
+}
+body {
+    background-color: orchid
+}
+.container-fluid {
+    background-color: rgb(220, 220, 220)
+}

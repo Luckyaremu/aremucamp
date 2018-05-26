@@ -1,0 +1,75 @@
+var express         = require("express");
+var router          = express.Router({ mergeParams: true});
+var passport        = require("passport");
+var User            = require("../models/user");
+
+router.get("/", function(req,res){
+    res.render("landing")
+});
+
+//Show register form
+router.get("/register", function(req, res){
+    res.render("register");
+});
+
+//=========================
+ //Handle Sign up logic
+//=========================
+
+router.post("/register", function(req, res){
+    var newUser = new User({username: req.body.username});
+    User.register(newUser, req.body.password, function(err, user){
+        if(err){
+            console.log(err);
+            req.flash("error", err.message);
+            return res.render("register")
+        }
+        passport.authenticate("local")(req, res, function(){
+            req.flash("success", "Successfully Signed Up! Nice to meet you " + req.body.username);
+            res.redirect("/campground");
+        });
+    });
+});
+
+    //Show login form
+router.get("/login", function(req, res){
+    res.render("login", {message:req.flash("error")});
+});
+
+//show about form
+router.get("/about", function(req, res){
+    res.render("about");
+});
+
+//show contact form
+router.get("/contact", function(req, res){
+    res.render("contact");
+});
+
+
+//Handle Login logic
+
+router.post("/login", passport.authenticate("local",{
+            successRedirect: "/campground",
+            failureRedirect: "/login"  
+ }), function(req, res){
+
+ });
+ 
+//Logout route
+
+router.get("/logout", function(req, res){
+    req.logout();
+    req.flash("success", "YOU HAVE BEEN LOGGED OUT, THANK YOU FOR USING AremuCamp!");
+    res.redirect("/campground");
+});
+//contact route
+
+function isLoggedIn(req, res, next){ 
+    if(req.isAuthenticated()){
+        return next();
+    }
+    req.flash("success", "Successfully LOGGED IN!");
+    res.redirect("/login");
+}
+module.exports = router;
