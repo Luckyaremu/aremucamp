@@ -28,7 +28,7 @@ mongoose.connect(process.env.MONGODB_URI, function(err, client) {
   }
 });
 
-// mongoose.connect("mongodb://localhost/aremucamp");
+//mongoose.connect("mongodb://localhost/aremucamp");
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
 app.use(express.static(path.join(__dirname, './Public')));
